@@ -30,12 +30,14 @@ export default class TextField extends PureComponent {
 
     animationDuration: 225,
 
-    fontSize: 16,
+    fontSize: 15,
     titleFontSize: 12,
     labelFontSize: 12,
-    labelHeight: 32,
+    labelHeight: 4,
+    // labelHeight: 32,
+    borderRadius: 4,
     labelPadding: 4,
-    inputContainerPadding: 8,
+    inputContainerPadding: 16,
     helpersNumberOfLines: 1,
 
     tintColor: 'rgb(0, 145, 234)',
@@ -61,6 +63,7 @@ export default class TextField extends PureComponent {
     titleFontSize: PropTypes.number,
     labelFontSize: PropTypes.number,
     labelHeight: PropTypes.number,
+    borderRadius: PropTypes.number,
     labelPadding: PropTypes.number,
     inputContainerPadding: PropTypes.number,
 
@@ -186,6 +189,7 @@ export default class TextField extends PureComponent {
   }
 
   clear() {
+      console.log('HEY 3!');
     this.input.clear();
 
     /* onChangeText is not triggered by .clear() */
@@ -213,6 +217,7 @@ export default class TextField extends PureComponent {
   }
 
   onFocus(event) {
+        console.log('HEY 1!');
     let { onFocus, clearTextOnFocus } = this.props;
 
     if ('function' === typeof onFocus) {
@@ -220,6 +225,7 @@ export default class TextField extends PureComponent {
     }
 
     if (clearTextOnFocus) {
+        console.log('HEY 2!');
       this.clear();
     }
 
@@ -343,6 +349,7 @@ export default class TextField extends PureComponent {
       labelFontSize,
       labelHeight,
       labelPadding,
+      borderRadius,
       inputContainerPadding,
       labelTextStyle,
       titleTextStyle,
@@ -378,14 +385,14 @@ export default class TextField extends PureComponent {
       'right':
       'left';
 
-    let borderBottomColor = restricted?
+    let borderColor = restricted?
       errorColor:
       focus.interpolate({
         inputRange: [-1, 0, 1],
         outputRange: [errorColor, baseColor, tintColor],
       });
 
-    let borderBottomWidth = restricted?
+    let borderWidth = restricted?
       activeLineWidth:
       focus.interpolate({
         inputRange: [-1, 0, 1],
@@ -393,16 +400,17 @@ export default class TextField extends PureComponent {
       });
 
     let inputContainerStyle = {
-      paddingTop: labelHeight,
-      paddingBottom: inputContainerPadding,
+      marginTop: 24,
+      padding: inputContainerPadding,
+      borderRadius,
 
       ...(disabled?
         { overflow: 'hidden' }:
-        { borderBottomColor, borderBottomWidth }),
+        { borderColor, borderWidth }),
 
       ...(props.multiline?
         { height: 'web' === Platform.OS ? 'auto' : labelHeight + inputContainerPadding + height }:
-        { height: labelHeight + inputContainerPadding + fontSize * 1.5 }),
+        { height: 56 }),
     };
 
     let inputStyle = {

@@ -102,11 +102,13 @@ export default class Label extends PureComponent {
         outputRange: [errorColor, baseColor, tintColor],
       });
 
+    let buffer = 7;
+
     let top = input.interpolate({
       inputRange: [0, 1],
       outputRange: [
         baseSize + fontSize * 0.25,
-        baseSize - basePadding - activeFontSize,
+        baseSize - basePadding - activeFontSize - buffer,
       ],
     });
 
