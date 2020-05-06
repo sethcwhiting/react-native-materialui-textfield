@@ -397,7 +397,6 @@ export default class TextField extends PureComponent {
       });
 
     let inputContainerStyle = {
-      marginTop: 24,
       padding: inputContainerPadding,
       borderRadius,
 
