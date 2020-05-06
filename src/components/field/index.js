@@ -189,7 +189,6 @@ export default class TextField extends PureComponent {
   }
 
   clear() {
-      console.log('HEY 3!');
     this.input.clear();
 
     /* onChangeText is not triggered by .clear() */
@@ -217,7 +216,6 @@ export default class TextField extends PureComponent {
   }
 
   onFocus(event) {
-        console.log('HEY 1!');
     let { onFocus, clearTextOnFocus } = this.props;
 
     if ('function' === typeof onFocus) {
@@ -225,7 +223,6 @@ export default class TextField extends PureComponent {
     }
 
     if (clearTextOnFocus) {
-        console.log('HEY 2!');
       this.clear();
     }
 
